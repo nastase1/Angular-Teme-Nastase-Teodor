@@ -4,17 +4,18 @@
 :root {
   --primary-bg: #f8fafc;
   --secondary-bg: #ffffff;
-  --accent-bg: #e3f2fd;
+  --accent-bg: #f1f5f9; /* Light gray background for sidebar */
   --card-bg: #ffffff;
-  --header-bg: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  --header-bg: #ffffff; /* White background for light mode */
   --text-primary: #1e293b;
   --text-secondary: #64748b;
   --text-muted: #94a3b8;
-  --accent-color: #3b82f6;
-  --accent-hover: #2563eb;
+  --accent-color: #7c3aed;
+  --accent-hover: #6d28d9;
   --border-color: #e2e8f0;
   --shadow: rgba(0, 0, 0, 0.1);
   --shadow-hover: rgba(0, 0, 0, 0.15);
+  --header-text: #1e293b; /* Dark text for light mode */
 }
 
 /* Dark Mode Variables */
@@ -23,15 +24,16 @@
   --secondary-bg: #1e293b;
   --accent-bg: #1e293b;
   --card-bg: #334155;
-  --header-bg: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  --header-bg: linear-gradient(135deg, #581c87 0%, #7c3aed 100%);
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
-  --accent-color: #60a5fa;
-  --accent-hover: #3b82f6;
+  --accent-color: #a78bfa;
+  --accent-hover: #8b5cf6;
   --border-color: #475569;
   --shadow: rgba(0, 0, 0, 0.3);
   --shadow-hover: rgba(0, 0, 0, 0.4);
+  --header-text: #ffffff;
 }
 
 * {
@@ -61,7 +63,9 @@ body {
 .cv-header {
   background: var(--header-bg);
   padding: 40px 30px;
-  color: white;
+  color: var(--header-text);
+  transition: all 0.3s ease;
+  border-bottom: 2px solid var(--border-color);
 }
 
 .header-content {
@@ -95,6 +99,8 @@ body {
   font-weight: 700;
   margin: 0;
   letter-spacing: -0.5px;
+  color: var(--header-text);
+  transition: color 0.3s ease;
 }
 
 .profile-text .title {
@@ -102,12 +108,14 @@ body {
   font-weight: 300;
   margin: 5px 0 0 0;
   opacity: 0.9;
+  color: var(--header-text);
+  transition: color 0.3s ease;
 }
 
 .theme-toggle {
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
+  color: var(--header-text);
   padding: 12px 20px;
   border-radius: 30px;
   cursor: pointer;
@@ -136,6 +144,7 @@ body {
   border-radius: 50%;
   overflow: hidden;
   transition: all 0.3s ease;
+  border: 3px solid var(--border-color); /* Added border for light mode */
 }
 
 .profile-photo-container:hover .photo-overlay {
@@ -143,7 +152,7 @@ body {
 }
 
 .profile-photo-container:hover .profile-photo {
-  filter: brightness(0.7);
+  filter: brightness(0.8);
 }
 
 .photo-overlay {
@@ -184,9 +193,8 @@ body {
 .cv-sidebar {
   background-color: var(--accent-bg);
   padding: 30px;
-  border-right: 1px solid var(--border-color);
+  border-right: 2px solid var(--border-color); 
 }
-
 .contact-card,
 .skills-card {
   margin-bottom: 40px;
@@ -203,6 +211,7 @@ body {
   margin: 0 0 25px 0;
   color: var(--text-primary);
   position: relative;
+  transition: color 0.3s ease;
 }
 
 .section-title::after {
@@ -214,6 +223,7 @@ body {
   height: 3px;
   background: var(--accent-color);
   border-radius: 2px;
+  transition: background 0.3s ease;
 }
 
 /* Contact Section */
@@ -230,7 +240,7 @@ body {
   padding: 15px;
   background: var(--card-bg);
   border-radius: 12px;
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
@@ -249,12 +259,14 @@ body {
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 2px;
+  transition: color 0.3s ease;
 }
 
 .contact-item p {
   margin: 0;
   color: var(--text-secondary);
   font-size: 0.9rem;
+  transition: color 0.3s ease;
 }
 
 .contact-item a {
@@ -281,6 +293,7 @@ body {
   font-weight: 600;
   margin: 0 0 15px 0;
   color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 
 .skill-tags {
@@ -296,7 +309,7 @@ body {
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 500;
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
@@ -336,6 +349,7 @@ body {
   width: 2px;
   background: var(--accent-color);
   border-radius: 1px;
+  transition: background 0.3s ease;
 }
 
 .timeline-item {
@@ -358,6 +372,7 @@ body {
   border: 3px solid var(--secondary-bg);
   border-radius: 50%;
   box-shadow: 0 0 0 3px var(--accent-color);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .timeline-content h3 {
@@ -365,12 +380,14 @@ body {
   font-weight: 600;
   margin: 0 0 5px 0;
   color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 
 .timeline-content .company {
   font-weight: 500;
   color: var(--accent-color);
   margin: 0 0 3px 0;
+  transition: color 0.3s ease;
 }
 
 .timeline-content .period {
@@ -378,6 +395,7 @@ body {
   font-size: 0.9rem;
   margin: 0 0 15px 0;
   font-style: italic;
+  transition: color 0.3s ease;
 }
 
 .timeline-content ul {
@@ -389,8 +407,10 @@ body {
   margin-bottom: 8px;
   color: var(--text-secondary);
   line-height: 1.6;
+  transition: color 0.3s ease;
 }
 
+/* Education Card */
 .education-card {
   display: flex;
   align-items: flex-start;
@@ -398,7 +418,7 @@ body {
   padding: 25px;
   background: var(--card-bg);
   border-radius: 15px;
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color); 
   box-shadow: 0 4px 15px var(--shadow);
   transition: all 0.3s ease;
 }
@@ -414,6 +434,7 @@ body {
   padding: 15px;
   border-radius: 12px;
   border: 1px solid var(--border-color);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .education-content h3 {
@@ -421,12 +442,14 @@ body {
   font-weight: 600;
   margin: 0 0 8px 0;
   color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 
 .education-content .institution {
   font-weight: 500;
   color: var(--accent-color);
   margin: 0 0 5px 0;
+  transition: color 0.3s ease;
 }
 
 .education-content .period {
@@ -434,27 +457,33 @@ body {
   font-size: 0.9rem;
   margin: 0 0 10px 0;
   font-style: italic;
+  transition: color 0.3s ease;
 }
 
 .education-content .description {
   margin: 0;
   color: var(--text-secondary);
   line-height: 1.6;
+  transition: color 0.3s ease;
 }
 
+/* Footer */
 .cv-footer {
   background: var(--accent-bg);
   padding: 25px 30px;
   text-align: center;
-  border-top: 1px solid var(--border-color);
+  border-top: 2px solid var(--border-color);
+  transition: all 0.3s ease;
 }
 
 .cv-footer p {
   margin: 0;
   color: var(--text-secondary);
   font-size: 0.9rem;
+  transition: color 0.3s ease;
 }
 
+/* Responsive Design */
 @media (max-width: 1024px) {
   .cv-body {
     grid-template-columns: 300px 1fr;

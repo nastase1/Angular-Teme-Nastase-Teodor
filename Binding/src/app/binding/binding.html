@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Framework List Manager</h1>
+
+  <div class="controls">
+    <div class="input-group">
+      <label for="filterInput">Filter Frameworks:</label>
+      <input
+        id="filterInput"
+        type="text"
+        [(ngModel)]="filterText"
+        placeholder="Type to filter..."
+        class="filter-input"
+      />
+    </div>
+
+    <button
+      (click)="toggleList()"
+      [class.active]="isActive"
+      [class.inactive]="!isActive"
+      class="toggle-button"
+    >
+      {{ isListVisible ? "Hide List" : "Show List" }}
+    </button>
+  </div>
+
+  <div *ngIf="isListVisible" class="list-container">
+    <ul class="framework-list">
+      <li *ngFor="let framework of filteredFrameworks" class="framework-item">
+        {{ framework }}
+      </li>
+    </ul>
+    <p *ngIf="filteredFrameworks.length === 0" class="no-results">
+      No frameworks match your filter.
+    </p>
+  </div>
+</div>
