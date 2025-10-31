@@ -1,0 +1,231 @@
+:root {
+  --color-primary: #1c1c1c; 
+  --color-secondary: #ffffff; 
+  --color-accent: #b8860b; 
+  --color-text-dark: #333333;
+  --color-text-light: #ffffff;
+  --color-highlight: #008080; 
+  --font-premium: 'Inter', sans-serif; 
+}
+
+body {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    font-family: var(--font-premium);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px; 
+}
+
+.language-selector {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.language-selector h3 {
+  color: var(--color-text-light);
+  margin: 0 0 20px 0;
+  font-size: 1.4em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.language-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.language-buttons button {
+  padding: 12px 25px;
+  border: 1px solid var(--color-accent);
+  background-color: transparent;
+  color: var(--color-text-light);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 5px rgba(184, 134, 11, 0.1);
+}
+
+.language-buttons button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(184, 134, 11, 0.4);
+}
+
+.language-buttons button.active {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(184, 134, 11, 0.6);
+  border-color: var(--color-accent);
+}
+
+.table-container {
+  background-color: var(--color-secondary);
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead {
+  background-color: var(--color-text-dark);
+}
+
+thead tr th {
+  color: var(--color-text-light);
+  padding: 20px 25px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+tbody tr:hover {
+  background-color: #e3e3e3;
+  cursor: pointer;
+}
+
+tbody tr td {
+  padding: 18px 25px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 1em;
+  color: var(--color-text-dark);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr td:first-child {
+  font-weight: 600;
+  color: #1c1c1c;
+}
+
+tbody tr td:nth-child(2) {
+  text-align: left;
+  color: #6c757d;
+}
+
+tbody tr td:nth-child(3) {
+  font-weight: 700;
+  color: var(--color-highlight);
+  font-size: 1.1em;
+}
+
+.info-section {
+  background-color: var(--color-text-dark);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border-left: 5px solid var(--color-accent);
+}
+
+.info-section p {
+  color: var(--color-secondary);
+  margin: 10px 0;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.info-section strong {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 10px;
+  }
+  
+  .language-selector {
+    padding: 20px;
+  }
+
+  .language-selector h3 {
+      font-size: 1.2em;
+  }
+  
+  .language-buttons {
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .language-buttons button {
+    flex: 1 1 auto;
+    min-width: unset;
+    padding: 10px 15px;
+    font-size: 0.95em;
+  }
+
+  .table-container {
+    border-radius: 10px;
+  }
+
+  table {
+    font-size: 0.9em;
+  }
+
+  thead tr th,
+  tbody tr td {
+    padding: 15px 12px;
+  }
+
+  thead tr th {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .language-buttons button {
+    flex: 1 1 calc(50% - 5px); 
+  }
+  
+  table {
+    font-size: 0.85em;
+  }
+
+  thead tr th:nth-child(2),
+  tbody tr td:nth-child(2) {
+    display: none; 
+  }
+
+  thead tr th,
+  tbody tr td {
+    padding: 10px 8px;
+  }
+}

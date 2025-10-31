@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="language-selector">
+    <h3>{{ "LANGUAGE_SELECTOR.TITLE" | translate }}</h3>
+    <div class="language-buttons">
+      @for (lang of languages; track lang.code) {
+      <button
+        [class.active]="currentLanguage().code === lang.code"
+        (click)="switchLanguage(lang)"
+      >
+        {{ lang.name }}
+      </button>
+      }
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>{{ "TABLE.HEADERS.PRODUCT_NAME" | translate }}</th>
+          <th>{{ "TABLE.HEADERS.QUANTITY" | translate }}</th>
+          <th>{{ "TABLE.HEADERS.PRICE" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of products; track product.nameKey) {
+        <tr>
+          <td>{{ product.nameKey | translate }}</td>
+          <td>{{ product.quantity }}</td>
+          <td>
+            {{ getFormattedPrice(product.priceUSD) }}
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-section">
+    <p><strong>Current Language:</strong> {{ currentLanguage().name }}</p>
+    <p><strong>Currency:</strong> {{ getCurrentCurrency() }}</p>
+    <p><strong>Locale:</strong> {{ getCurrentLocale() }}</p>
+  </div>
+</div>

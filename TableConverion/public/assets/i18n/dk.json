@@ -1,0 +1,19 @@
+{
+  "TABLE": {
+    "HEADERS": {
+      "PRODUCT_NAME": "Produktnavn",
+      "QUANTITY": "Mængde",
+      "PRICE": "Pris"
+    },
+    "PRODUCTS": {
+      "LAPTOP": "Bærbar computer",
+      "SMARTPHONE": "Smartphone",
+      "HEADPHONES": "Hovedtelefoner",
+      "KEYBOARD": "Tastatur",
+      "MOUSE": "Mus"
+    }
+  },
+  "LANGUAGE_SELECTOR": {
+    "TITLE": "Vælg sprog"
+  }
+}

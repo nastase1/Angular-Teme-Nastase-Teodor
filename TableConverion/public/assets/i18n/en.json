@@ -1,0 +1,19 @@
+{
+  "TABLE": {
+    "HEADERS": {
+      "PRODUCT_NAME": "Product Name",
+      "QUANTITY": "Quantity",
+      "PRICE": "Price"
+    },
+    "PRODUCTS": {
+      "LAPTOP": "Laptop",
+      "SMARTPHONE": "Smartphone",
+      "HEADPHONES": "Headphones",
+      "KEYBOARD": "Keyboard",
+      "MOUSE": "Mouse"
+    }
+  },
+  "LANGUAGE_SELECTOR": {
+    "TITLE": "Select Language"
+  }
+}

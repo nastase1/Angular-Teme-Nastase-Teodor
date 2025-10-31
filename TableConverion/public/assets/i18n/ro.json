@@ -1,0 +1,19 @@
+{
+  "TABLE": {
+    "HEADERS": {
+      "PRODUCT_NAME": "Nume Produs",
+      "QUANTITY": "Cantitate",
+      "PRICE": "Preț"
+    },
+    "PRODUCTS": {
+      "LAPTOP": "Laptop",
+      "SMARTPHONE": "Smartphone",
+      "HEADPHONES": "Căști",
+      "KEYBOARD": "Tastatură",
+      "MOUSE": "Mouse"
+    }
+  },
+  "LANGUAGE_SELECTOR": {
+    "TITLE": "Selectați limba"
+  }
+}

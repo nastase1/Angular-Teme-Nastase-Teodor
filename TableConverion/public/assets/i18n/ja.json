@@ -1,0 +1,19 @@
+{
+  "TABLE": {
+    "HEADERS": {
+      "PRODUCT_NAME": "製品名",
+      "QUANTITY": "数量",
+      "PRICE": "価格"
+    },
+    "PRODUCTS": {
+      "LAPTOP": "ノートパソコン",
+      "SMARTPHONE": "スマートフォン",
+      "HEADPHONES": "ヘッドホン",
+      "KEYBOARD": "キーボード",
+      "MOUSE": "マウス"
+    }
+  },
+  "LANGUAGE_SELECTOR": {
+    "TITLE": "言語を選択"
+  }
+}

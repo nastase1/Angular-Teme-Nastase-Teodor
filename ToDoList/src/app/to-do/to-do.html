@@ -1,0 +1,198 @@
+<div class="app-container" [class.dark-mode]="isDarkMode">
+  <header class="header">
+    <div class="header-content">
+      <h1 class="app-title">To-Do List</h1>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <div class="toolbar">
+      <button class="add-button" (click)="openAddModal()">
+        <span class="btn-icon">+</span>
+        Add Task
+      </button>
+
+      <div class="toolbar-right">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            [(ngModel)]="searchText"
+            placeholder="Search tasks..."
+            class="search-input"
+          />
+        </div>
+
+        <select [(ngModel)]="filterStatus" class="filter-select">
+          <option value="All">All ({{ getTaskCount("All") }})</option>
+          <option value="New">New ({{ getTaskCount("New") }})</option>
+          <option value="In Progress">
+            In Progress ({{ getTaskCount("In Progress") }})
+          </option>
+          <option value="Completed">
+            Completed ({{ getTaskCount("Completed") }})
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="stats-container">
+      <div class="stat-card stat-new">
+        <div class="stat-number">{{ getTaskCount("New") }}</div>
+        <div class="stat-label">New</div>
+      </div>
+      <div class="stat-card stat-progress">
+        <div class="stat-number">{{ getTaskCount("In Progress") }}</div>
+        <div class="stat-label">In Progress</div>
+      </div>
+      <div class="stat-card stat-completed">
+        <div class="stat-number">{{ getTaskCount("Completed") }}</div>
+        <div class="stat-label">Completed</div>
+      </div>
+    </div>
+
+    <div class="tasks-container">
+      <div *ngIf="filteredTasks.length === 0" class="empty-state">
+        <div class="empty-icon">📝</div>
+        <h3>No tasks found</h3>
+        <p>
+          {{
+            searchText
+              ? "Try adjusting your search"
+              : "Add a new task to get started"
+          }}
+        </p>
+      </div>
+
+      <div
+        *ngFor="let task of filteredTasks"
+        class="task-card"
+        [ngClass]="{
+          'task-new': task.status === 'New',
+          'task-progress': task.status === 'In Progress',
+          'task-completed': task.status === 'Completed'
+        }"
+      >
+        <div class="task-content">
+          <div class="task-header">
+            <h3
+              class="task-title"
+              [class.completed-text]="task.status === 'Completed'"
+            >
+              {{ task.title }}
+            </h3>
+            <span
+              class="task-badge"
+              [ngClass]="'badge-' + task.status.toLowerCase().replace(' ', '-')"
+            >
+              {{ task.status }}
+            </span>
+          </div>
+          <div class="task-footer">
+            <div class="task-date">
+              {{ task.createdAt | date : "short" }}
+            </div>
+            <div class="task-actions">
+              <button
+                *ngIf="task.status !== 'New'"
+                (click)="changeStatus(task, 'New')"
+                class="status-btn status-new"
+                title="Mark as New"
+              >
+                🆕
+              </button>
+              <button
+                *ngIf="task.status !== 'In Progress'"
+                (click)="changeStatus(task, 'In Progress')"
+                class="status-btn status-progress"
+                title="Mark as In Progress"
+              >
+                ⏳
+              </button>
+              <button
+                *ngIf="task.status !== 'Completed'"
+                (click)="changeStatus(task, 'Completed')"
+                class="status-btn status-completed"
+                title="Mark as Completed"
+              >
+                ✅
+              </button>
+              <button
+                (click)="openEditModal(task)"
+                class="action-btn edit-btn"
+                title="Edit"
+              >
+                ✏️
+              </button>
+              <button
+                (click)="confirmDelete(task)"
+                class="action-btn delete-btn"
+                title="Delete"
+              >
+                🗑️
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>{{ modalMode === "add" ? "Add New Task" : "Edit Task" }}</h2>
+        <button class="close-btn" (click)="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <label for="taskTitle">Task Title</label>
+        <input
+          id="taskTitle"
+          type="text"
+          [ngModel]="modalMode === 'add' ? newTaskTitle : editingTaskTitle"
+          (ngModelChange)="
+            modalMode === 'add'
+              ? (newTaskTitle = $event)
+              : (editingTaskTitle = $event)
+          "
+          placeholder="Enter task title..."
+          class="modal-input"
+          (keyup.enter)="modalMode === 'add' ? addTask() : updateTask()"
+        />
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn cancel-btn" (click)="closeModal()">
+          Cancel
+        </button>
+        <button
+          class="modal-btn save-btn"
+          (click)="modalMode === 'add' ? addTask() : updateTask()"
+        >
+          {{ modalMode === "add" ? "Add" : "Save" }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div *ngIf="showDeleteConfirm" class="modal-overlay" (click)="cancelDelete()">
+    <div class="modal-content confirm-modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Confirm Delete</h2>
+        <button class="close-btn" (click)="cancelDelete()">×</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this task?</p>
+        <p class="delete-task-title">"{{ taskToDelete?.title }}"</p>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn cancel-btn" (click)="cancelDelete()">
+          Cancel
+        </button>
+        <button class="modal-btn delete-btn-confirm" (click)="deleteTask()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
