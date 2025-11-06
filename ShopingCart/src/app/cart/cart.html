@@ -1,0 +1,27 @@
+<div class="cart-container">
+  <h2>Shopping Cart</h2>
+
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <p>Your cart is empty.</p>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="cart-content">
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of cartItems; let i = index">
+        <img [src]="item.image" [alt]="item.name" class="cart-item-image" />
+        <div class="cart-item-info">
+          <h4>{{ item.name }}</h4>
+          <p class="cart-item-price">${{ item.price.toFixed(2) }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <div class="total">
+        <strong>Total:</strong>
+        <strong class="total-price">${{ totalPrice.toFixed(2) }}</strong>
+      </div>
+      <button class="clear-cart-btn" (click)="clearCart()">Clear Cart</button>
+    </div>
+  </div>
+</div>
