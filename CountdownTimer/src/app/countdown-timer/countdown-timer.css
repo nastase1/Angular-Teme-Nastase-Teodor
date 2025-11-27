@@ -1,0 +1,150 @@
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.timer-display {
+  background: #4a4a4a;
+  border-radius: 20px;
+  padding: 60px 80px;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  min-width: 300px;
+  text-align: center;
+}
+
+.countdown-number {
+  font-size: 120px;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.time-up-message {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ffffff;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.timer-display.low-time {
+  background: #8b3333;
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.timer-display.finished {
+  background: #4a4a4a;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #ffffff;
+  color: #2d2d2d;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #f0f0f0;
+}
+
+.btn-secondary {
+  background: #5a5a5a;
+  color: #ffffff;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #6a6a6a;
+}
+
+.btn-accent {
+  background: #7a7a7a;
+  color: #ffffff;
+}
+
+.btn-accent:hover:not(:disabled) {
+  background: #8a8a8a;
+}
+
+@media (max-width: 768px) {
+  .timer-display {
+    padding: 40px 60px;
+    min-width: 250px;
+  }
+
+  .countdown-number {
+    font-size: 80px;
+  }
+
+  .time-up-message {
+    font-size: 36px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}

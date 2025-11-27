@@ -1,0 +1,30 @@
+<div class="timer-container">
+  <div
+    class="timer-display"
+    [class.low-time]="isLowTime()"
+    [class.finished]="isFinished()"
+  >
+    <div class="countdown-number" *ngIf="!isFinished()">{{ countdown() }}</div>
+    <div class="time-up-message" *ngIf="isFinished()">Time's up!</div>
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-primary" (click)="start()" [disabled]="isRunning()">
+      Start
+    </button>
+
+    <button
+      class="btn btn-secondary"
+      (click)="pause()"
+      [disabled]="!isRunning()"
+    >
+      Pause
+    </button>
+
+    <button class="btn btn-secondary" (click)="reset()">Reset</button>
+
+    <button class="btn btn-accent" (click)="addTime(5)">+5</button>
+
+    <button class="btn btn-accent" (click)="addTime(15)">+15</button>
+  </div>
+</div>
