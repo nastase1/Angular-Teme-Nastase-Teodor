@@ -1,0 +1,170 @@
+<div class="form-container">
+  <div class="form-card">
+    <h1 class="form-title">Create Account</h1>
+    <p class="form-subtitle">Join us today</p>
+
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Username Field -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          placeholder="Enter username"
+          [class.invalid]="
+            username?.invalid &&
+            (username?.dirty || username?.touched || submitted)
+          "
+          [class.valid]="username?.valid && username?.dirty"
+        />
+        <div
+          class="error-message"
+          *ngIf="
+            username?.invalid &&
+            (username?.dirty || username?.touched || submitted)
+          "
+        >
+          <span *ngIf="username?.errors?.['required']"
+            >Username is required</span
+          >
+          <span *ngIf="username?.errors?.['minlength']">
+            Username must be at least 3 characters
+          </span>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Enter email"
+          [class.invalid]="
+            email?.invalid && (email?.dirty || email?.touched || submitted)
+          "
+          [class.valid]="email?.valid && email?.dirty"
+        />
+        <div
+          class="error-message"
+          *ngIf="
+            email?.invalid && (email?.dirty || email?.touched || submitted)
+          "
+        >
+          <span *ngIf="email?.errors?.['required']">Email is required</span>
+          <span *ngIf="email?.errors?.['email']"
+            >Please enter a valid email</span
+          >
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            formControlName="password"
+            placeholder="Enter password"
+            [class.invalid]="
+              password?.invalid &&
+              (password?.dirty || password?.touched || submitted)
+            "
+            [class.valid]="password?.valid && password?.dirty"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePasswordVisibility('password')"
+          >
+            {{ showPassword ? "👁️" : "👁️‍🗨️" }}
+          </button>
+        </div>
+        <div
+          class="error-message"
+          *ngIf="
+            password?.invalid &&
+            (password?.dirty || password?.touched || submitted)
+          "
+        >
+          <span *ngIf="password?.errors?.['required']"
+            >Password is required</span
+          >
+          <span *ngIf="password?.errors?.['minlength']">
+            Password must be at least 6 characters
+          </span>
+        </div>
+
+        <!-- Password Strength Bar -->
+        <div class="password-strength" *ngIf="password?.value">
+          <div class="strength-bar">
+            <div
+              class="strength-fill"
+              [style.width.%]="passwordStrength"
+              [class]="passwordStrengthClass"
+            ></div>
+          </div>
+          <span class="strength-label" [class]="passwordStrengthClass">
+            {{ passwordStrengthLabel }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Confirm Password Field -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="password-wrapper">
+          <input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            placeholder="Confirm password"
+            [class.invalid]="(confirmPassword?.invalid || registerForm.errors?.['passwordMismatch']) && (confirmPassword?.dirty || confirmPassword?.touched || submitted)"
+            [class.valid]="confirmPassword?.valid && !registerForm.errors?.['passwordMismatch'] && confirmPassword?.dirty"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePasswordVisibility('confirmPassword')"
+          >
+            {{ showConfirmPassword ? "👁️" : "👁️‍🗨️" }}
+          </button>
+        </div>
+        <div
+          class="error-message"
+          *ngIf="(confirmPassword?.invalid || registerForm.errors?.['passwordMismatch']) && (confirmPassword?.dirty || confirmPassword?.touched || submitted)"
+        >
+          <span *ngIf="confirmPassword?.errors?.['required']"
+            >Please confirm your password</span
+          >
+          <span
+            *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword?.value"
+          >
+            Passwords do not match
+          </span>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-group">
+        <button
+          type="submit"
+          class="btn btn-submit"
+          [disabled]="registerForm.invalid"
+        >
+          Register
+        </button>
+        <button type="button" class="btn btn-reset" (click)="resetForm()">
+          Clear
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
