@@ -1,0 +1,236 @@
+/* Premium Color Palette */
+:root {
+  --nardo-gray: #888c8d;
+  --dark-green: #1a4d2e;
+  --premium-white: #f8f9fa;
+  --charcoal: #2d2d2d;
+  --light-gray: #e5e5e5;
+  --accent-green: #2d5f3f;
+}
+
+.detail-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--premium-white) 0%, #e8eaed 100%);
+  padding: 2rem;
+  animation: fadeIn 0.6s ease;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--dark-green);
+  color: var(--premium-white);
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(26, 77, 46, 0.2);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.back-button:hover {
+  background: var(--accent-green);
+  transform: translateX(-5px);
+  box-shadow: 0 6px 20px rgba(26, 77, 46, 0.3);
+}
+
+.back-button svg {
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover svg {
+  transform: translateX(-3px);
+}
+
+.detail-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  background: white;
+  animation: slideInLeft 0.8s ease;
+}
+
+.detail-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.image-container:hover .detail-image {
+  transform: scale(1.05);
+}
+
+.info-container {
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  animation: slideInRight 0.8s ease;
+}
+
+.detail-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--dark-green) 0%, var(--accent-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.divider {
+  height: 4px;
+  width: 80px;
+  background: linear-gradient(90deg, var(--dark-green) 0%, var(--accent-green) 100%);
+  border-radius: 2px;
+  margin-bottom: 2rem;
+}
+
+.detail-description {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--charcoal);
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--light-gray);
+}
+
+.meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meta-label {
+  font-size: 0.9rem;
+  color: var(--nardo-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.meta-value {
+  font-size: 1.1rem;
+  color: var(--dark-green);
+  font-weight: 700;
+}
+
+.not-found {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--premium-white) 0%, #e8eaed 100%);
+  padding: 2rem;
+}
+
+.not-found h2 {
+  font-size: 2rem;
+  color: var(--charcoal);
+  margin-bottom: 2rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .detail-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .detail-title {
+    font-size: 2rem;
+  }
+
+  .detail-description {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .detail-container {
+    padding: 1rem;
+  }
+
+  .back-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .detail-title {
+    font-size: 1.8rem;
+  }
+
+  .info-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-title {
+    font-size: 1.5rem;
+  }
+
+  .detail-description {
+    font-size: 1rem;
+  }
+}

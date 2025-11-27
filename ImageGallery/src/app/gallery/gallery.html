@@ -1,0 +1,35 @@
+<div class="gallery-container">
+  <div class="header">
+    <h1>Premium Gallery</h1>
+    <p class="subtitle">Discover our curated collection</p>
+  </div>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search images by title..."
+      class="search-input"
+    />
+  </div>
+
+  <div class="gallery-grid">
+    <div
+      *ngFor="let image of filteredImages"
+      class="gallery-item"
+      [routerLink]="['/image', image.id]"
+    >
+      <div class="image-wrapper">
+        <img [src]="image.url" [alt]="image.title" />
+        <div class="overlay">
+          <span class="view-details">View Details</span>
+        </div>
+      </div>
+      <h3 class="image-title">{{ image.title }}</h3>
+    </div>
+  </div>
+
+  <div *ngIf="filteredImages.length === 0" class="no-results">
+    <p>No images found matching "{{ searchTerm }}"</p>
+  </div>
+</div>
